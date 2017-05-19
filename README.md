@@ -1,6 +1,9 @@
 # voat-container
 Containerized version of https://voat.co
 
+# About this fork
+I am attempting to create a git repo that will facilitate the migration of voat code into a workable python microservice that will hopefully work in parallel to efforts to reduce voat bloat!
+
 - Stack: https://docs.docker.com/compose/aspnet-mssql-compose/
 - App: https://github.com/voat/voat/tree/Dev
 
