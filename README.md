@@ -14,3 +14,22 @@ Containerized version of https://voat.co
 - HtmlAgilityPack: http://www.nuget.org/packages/HtmlAgilityPack
 - Bootstrap: http://getbootstrap.com
 - jQuery: http://jquery.com
+
+
+#### Migration list
+
+## Python
+
+
+- .NET Image Library to Python: http://pythonware.com/products/pil/
+- Markdowndeep to Python https://pypi.python.org/pypi/Markdown
+- ORM is possibly not needed in python, native DB access can be used?
+- WebAPiThrottle - DJANGO has this built in with asyncronous and delay
+- DJANGO dumps the need for SignalR too
+
+To Keep:
+- Bootstrap: http://getbootstrap.com
+- jQuery: http://jquery.com
+- HtmlAgilityPack: http://www.nuget.org/packages/HtmlAgilityPack
+
+## Let me know if anything has been missed! 
