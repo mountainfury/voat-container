@@ -19,10 +19,10 @@ I am attempting to create a git repo that will facilitate the migration of voat 
 - jQuery: http://jquery.com
 
 
-#### Migration list
+## Migration list
 
-## Python
-
+### Python
+These will need to be researched probably, but it might also just be fine!
 
 - .NET Image Library to Python: http://pythonware.com/products/pil/
 - Markdowndeep to Python https://pypi.python.org/pypi/Markdown
@@ -33,6 +33,8 @@ I am attempting to create a git repo that will facilitate the migration of voat 
 To Keep:
 - Bootstrap: http://getbootstrap.com
 - jQuery: http://jquery.com
+
+Find a replacement for:
 - HtmlAgilityPack: http://www.nuget.org/packages/HtmlAgilityPack
 
 ## Let me know if anything has been missed! 
