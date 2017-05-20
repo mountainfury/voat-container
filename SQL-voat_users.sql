@@ -1,4 +1,3 @@
-
 --
 -- Database: `voat_users`
 --
@@ -215,6 +214,163 @@ CREATE TABLE IF NOT EXISTS `usersinroles` (
   `baxt` int(11) NOT NULL,
   PRIMARY KEY (`RoleId`),
   UNIQUE KEY `UserId` (`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_applications`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_applications`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_applications` (
+  `ApplicationName` varchar(256) NOT NULL,
+  `LoweredApplicationName` varchar(256) NOT NULL,
+  `ApplicationId` int(11) NOT NULL,
+  `Description` varchar(256) NOT NULL,
+  PRIMARY KEY (`ApplicationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_membershipusers`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_membershipusers`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_membershipusers` (
+  `UserId` int(11) NOT NULL,
+  `PasswordFormat` int(11) NOT NULL,
+  `MobilePIN` varchar(16) NOT NULL,
+  `Email` varchar(256) NOT NULL,
+  `LoweredEmail` varchar(256) NOT NULL,
+  `PasswordQuestion` varchar(256) NOT NULL,
+  `PasswordAnswer` varchar(256) NOT NULL,
+  `IsApproved` tinyint(1) NOT NULL,
+  `IsLockedOut` tinyint(1) NOT NULL,
+  `CreateDate` datetime NOT NULL,
+  `LastLoginDate` datetime NOT NULL,
+  `LastPasswordChangedDate` datetime NOT NULL,
+  `LastLockoutDate` datetime NOT NULL,
+  `FailedPasswordAttemptCount` int(11) NOT NULL,
+  `FailedPasswordAttemptWindowStart` datetime NOT NULL,
+  `FailedPasswordAnswerAttemptCount` int(11) NOT NULL,
+  `FailedPasswordAnswerAttemptWindowStart` datetime NOT NULL,
+  `Comment` text NOT NULL,
+  `ApplicationId` int(11) NOT NULL,
+  `UserName` varchar(256) NOT NULL,
+  `MobileAlias` varchar(16) NOT NULL,
+  `IsAnonymous` tinyint(1) NOT NULL,
+  `LastActivityDate` datetime NOT NULL,
+  PRIMARY KEY (`UserId`),
+  UNIQUE KEY `ApplicationId` (`ApplicationId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_profiles`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_profiles`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_profiles` (
+  `UserId` int(11) NOT NULL,
+  `LastUpdatedDate` int(11) NOT NULL,
+  `DataSize` datetime NOT NULL,
+  PRIMARY KEY (`UserId`),
+  UNIQUE KEY `LastUpdatedDate` (`LastUpdatedDate`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_roles`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_roles`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_roles` (
+  `ApplicationId` int(11) NOT NULL,
+  `RoleId` int(11) NOT NULL,
+  `RoleName` varchar(256) NOT NULL,
+  `LoweredRoleName` varchar(256) NOT NULL,
+  `Description` varchar(256) NOT NULL,
+  PRIMARY KEY (`ApplicationId`,`RoleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_users`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_users`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_users` (
+  `ApplicationId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL,
+  `UserName` varchar(256) NOT NULL,
+  `LoweredUserName` varchar(256) NOT NULL,
+  `MobileAlias` varchar(16) NOT NULL,
+  `IsAnonymous` tinyint(1) NOT NULL,
+  `LastActivityDate` datetime NOT NULL,
+  UNIQUE KEY `ApplicationId` (`ApplicationId`,`UserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_usersinroles`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_usersinroles`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_usersinroles` (
+  `UserId` int(11) NOT NULL,
+  `RoleId` int(11) NOT NULL,
+  PRIMARY KEY (`UserId`,`RoleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_webpartstate_paths`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_webpartstate_paths`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_webpartstate_paths` (
+  `ApplicationId` int(11) NOT NULL,
+  `PathId` int(11) NOT NULL,
+  `Path` varchar(256) NOT NULL,
+  `LoweredPath` varchar(256) NOT NULL,
+  PRIMARY KEY (`ApplicationId`,`PathId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_webpartstate_shared`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_webpartstate_shared`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_webpartstate_shared` (
+  `PathId` int(11) NOT NULL,
+  `DataSize` int(11) DEFAULT NULL,
+  `LastUpdatedDate` datetime NOT NULL,
+  PRIMARY KEY (`PathId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vw_aspnet_webpartstate_user`
+--
+
+DROP TABLE IF EXISTS `vw_aspnet_webpartstate_user`;
+CREATE TABLE IF NOT EXISTS `vw_aspnet_webpartstate_user` (
+  `PathId` int(11) NOT NULL,
+  `UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `DataSize` int(11) DEFAULT NULL,
+  `LastUpdatedDate` datetime NOT NULL,
+  PRIMARY KEY (`UserId`),
+  UNIQUE KEY `PathId` (`PathId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
