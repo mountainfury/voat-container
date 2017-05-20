@@ -26,7 +26,7 @@ These will need to be researched probably, but it might also just be fine!
 
 - .NET Image Library to Python: http://pythonware.com/products/pil/
 - Markdowndeep to Python https://pypi.python.org/pypi/Markdown
-- ORM is possibly not needed in python, native DB access can be used?
+- ORM - SQLAlchemy - ORM - https://sqlalchemy.org
 - WebAPiThrottle - DJANGO has this built in with asyncronous and delay
 - DJANGO dumps the need for SignalR too
 
