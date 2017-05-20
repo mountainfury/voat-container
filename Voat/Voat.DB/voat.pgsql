@@ -925,7 +925,7 @@ ALTER TABLE ONLY uservisit
 
 
 --
--- Name: apiclient_apipermissionpolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: apiclient_apipermissionpolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY apiclient
@@ -933,7 +933,7 @@ ALTER TABLE ONLY apiclient
 
 
 --
--- Name: apiclient_apithrottlepolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: apiclient_apithrottlepolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY apiclient
@@ -941,7 +941,7 @@ ALTER TABLE ONLY apiclient
 
 
 --
--- Name: comment_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: comment_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY comment
@@ -949,7 +949,7 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: commentsavetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: commentsavetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY commentsavetracker
@@ -957,7 +957,7 @@ ALTER TABLE ONLY commentsavetracker
 
 
 --
--- Name: commentvotetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: commentvotetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY commentvotetracker
@@ -965,7 +965,7 @@ ALTER TABLE ONLY commentvotetracker
 
 
 --
--- Name: contentremovallog_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: contentremovallog_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY contentremovallog
@@ -973,7 +973,7 @@ ALTER TABLE ONLY contentremovallog
 
 
 --
--- Name: defaultsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: defaultsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY defaultsubverse
@@ -981,7 +981,7 @@ ALTER TABLE ONLY defaultsubverse
 
 
 --
--- Name: featuredsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: featuredsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY featuredsubverse
@@ -989,7 +989,7 @@ ALTER TABLE ONLY featuredsubverse
 
 
 --
--- Name: stickiedsubmission_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: stickiedsubmission_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY stickiedsubmission
@@ -997,7 +997,7 @@ ALTER TABLE ONLY stickiedsubmission
 
 
 --
--- Name: stickiedsubmission_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: stickiedsubmission_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY stickiedsubmission
@@ -1005,7 +1005,7 @@ ALTER TABLE ONLY stickiedsubmission
 
 
 --
--- Name: submissionremovallog_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: submissionremovallog_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY submissionremovallog
@@ -1013,7 +1013,7 @@ ALTER TABLE ONLY submissionremovallog
 
 
 --
--- Name: submissionsavetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: submissionsavetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY submissionsavetracker
@@ -1021,7 +1021,7 @@ ALTER TABLE ONLY submissionsavetracker
 
 
 --
--- Name: submissionvotetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: submissionvotetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY submissionvotetracker
@@ -1029,7 +1029,7 @@ ALTER TABLE ONLY submissionvotetracker
 
 
 --
--- Name: subverseban_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: subverseban_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY subverseban
@@ -1037,7 +1037,7 @@ ALTER TABLE ONLY subverseban
 
 
 --
--- Name: subverseflair_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: subverseflair_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY subverseflair
@@ -1045,7 +1045,7 @@ ALTER TABLE ONLY subverseflair
 
 
 --
--- Name: subversemoderator_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: subversemoderator_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY subversemoderator
@@ -1053,7 +1053,7 @@ ALTER TABLE ONLY subversemoderator
 
 
 --
--- Name: subversesubscription_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: subversesubscription_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY subversesubscription
@@ -1061,7 +1061,7 @@ ALTER TABLE ONLY subversesubscription
 
 
 --
--- Name: userbadge_badge_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: userbadge_badge_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY userbadge
@@ -1069,7 +1069,7 @@ ALTER TABLE ONLY userbadge
 
 
 --
--- Name: userblockedsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: userblockedsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY userblockedsubverse
@@ -1077,7 +1077,7 @@ ALTER TABLE ONLY userblockedsubverse
 
 
 --
--- Name: usersetlist_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: usersetlist_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY usersetlist
@@ -1085,7 +1085,7 @@ ALTER TABLE ONLY usersetlist
 
 
 --
--- Name: usersetlist_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: usersetlist_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY usersetlist
@@ -1093,7 +1093,7 @@ ALTER TABLE ONLY usersetlist
 
 
 --
--- Name: usersetsubscription_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: usersetsubscription_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY usersetsubscription
@@ -1101,7 +1101,7 @@ ALTER TABLE ONLY usersetsubscription
 
 
 --
--- Name: viewstatistic_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: tag
+-- Name: viewstatistic_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
 --
 
 ALTER TABLE ONLY viewstatistic
