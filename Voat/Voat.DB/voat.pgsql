@@ -29,7 +29,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ad; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: ad; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE ad (
@@ -46,10 +46,10 @@ CREATE TABLE ad (
 );
 
 
-ALTER TABLE public.ad OWNER TO tag;
+ALTER TABLE public.ad OWNER TO voat;
 
 --
--- Name: apiclient; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: apiclient; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE apiclient (
@@ -69,10 +69,10 @@ CREATE TABLE apiclient (
 );
 
 
-ALTER TABLE public.apiclient OWNER TO tag;
+ALTER TABLE public.apiclient OWNER TO voat;
 
 --
--- Name: apicorspolicy; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: apicorspolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE apicorspolicy (
@@ -90,10 +90,10 @@ CREATE TABLE apicorspolicy (
 );
 
 
-ALTER TABLE public.apicorspolicy OWNER TO tag;
+ALTER TABLE public.apicorspolicy OWNER TO voat;
 
 --
--- Name: apilog; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: apilog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE apilog (
@@ -107,10 +107,10 @@ CREATE TABLE apilog (
 );
 
 
-ALTER TABLE public.apilog OWNER TO tag;
+ALTER TABLE public.apilog OWNER TO voat;
 
 --
--- Name: apipermissionpolicy; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: apipermissionpolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE apipermissionpolicy (
@@ -120,10 +120,10 @@ CREATE TABLE apipermissionpolicy (
 );
 
 
-ALTER TABLE public.apipermissionpolicy OWNER TO tag;
+ALTER TABLE public.apipermissionpolicy OWNER TO voat;
 
 --
--- Name: apithrottlepolicy; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: apithrottlepolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE apithrottlepolicy (
@@ -133,10 +133,10 @@ CREATE TABLE apithrottlepolicy (
 );
 
 
-ALTER TABLE public.apithrottlepolicy OWNER TO tag;
+ALTER TABLE public.apithrottlepolicy OWNER TO voat;
 
 --
--- Name: badge; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: badge; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE badge (
@@ -147,10 +147,10 @@ CREATE TABLE badge (
 );
 
 
-ALTER TABLE public.badge OWNER TO tag;
+ALTER TABLE public.badge OWNER TO voat;
 
 --
--- Name: banneddomain; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: banneddomain; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE banneddomain (
@@ -162,10 +162,10 @@ CREATE TABLE banneddomain (
 );
 
 
-ALTER TABLE public.banneddomain OWNER TO tag;
+ALTER TABLE public.banneddomain OWNER TO voat;
 
 --
--- Name: banneduser; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: banneduser; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE banneduser (
@@ -177,10 +177,10 @@ CREATE TABLE banneduser (
 );
 
 
-ALTER TABLE public.banneduser OWNER TO tag;
+ALTER TABLE public.banneduser OWNER TO voat;
 
 --
--- Name: comment; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: comment; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE comment (
@@ -201,10 +201,10 @@ CREATE TABLE comment (
 );
 
 
-ALTER TABLE public.comment OWNER TO tag;
+ALTER TABLE public.comment OWNER TO voat;
 
 --
--- Name: commentsavetracker; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: commentsavetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE commentsavetracker (
@@ -215,10 +215,10 @@ CREATE TABLE commentsavetracker (
 );
 
 
-ALTER TABLE public.commentsavetracker OWNER TO tag;
+ALTER TABLE public.commentsavetracker OWNER TO voat;
 
 --
--- Name: commentvotetracker; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: commentvotetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE commentvotetracker (
@@ -231,10 +231,10 @@ CREATE TABLE commentvotetracker (
 );
 
 
-ALTER TABLE public.commentvotetracker OWNER TO tag;
+ALTER TABLE public.commentvotetracker OWNER TO voat;
 
 --
--- Name: contentremovallog; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: contentremovallog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE contentremovallog (
@@ -245,10 +245,10 @@ CREATE TABLE contentremovallog (
 );
 
 
-ALTER TABLE public.contentremovallog OWNER TO tag;
+ALTER TABLE public.contentremovallog OWNER TO voat;
 
 --
--- Name: defaultsubverse; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: defaultsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE defaultsubverse (
@@ -257,10 +257,10 @@ CREATE TABLE defaultsubverse (
 );
 
 
-ALTER TABLE public.defaultsubverse OWNER TO tag;
+ALTER TABLE public.defaultsubverse OWNER TO voat;
 
 --
--- Name: eventlog; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: eventlog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE eventlog (
@@ -278,10 +278,10 @@ CREATE TABLE eventlog (
 );
 
 
-ALTER TABLE public.eventlog OWNER TO tag;
+ALTER TABLE public.eventlog OWNER TO voat;
 
 --
--- Name: featuredsubverse; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: featuredsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE featuredsubverse (
@@ -292,10 +292,10 @@ CREATE TABLE featuredsubverse (
 );
 
 
-ALTER TABLE public.featuredsubverse OWNER TO tag;
+ALTER TABLE public.featuredsubverse OWNER TO voat;
 
 --
--- Name: message; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: message; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE message (
@@ -319,10 +319,10 @@ CREATE TABLE message (
 );
 
 
-ALTER TABLE public.message OWNER TO tag;
+ALTER TABLE public.message OWNER TO voat;
 
 --
--- Name: moderatorinvitation; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: moderatorinvitation; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE moderatorinvitation (
@@ -335,10 +335,10 @@ CREATE TABLE moderatorinvitation (
 );
 
 
-ALTER TABLE public.moderatorinvitation OWNER TO tag;
+ALTER TABLE public.moderatorinvitation OWNER TO voat;
 
 --
--- Name: sessiontracker; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: sessiontracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE sessiontracker (
@@ -348,10 +348,10 @@ CREATE TABLE sessiontracker (
 );
 
 
-ALTER TABLE public.sessiontracker OWNER TO tag;
+ALTER TABLE public.sessiontracker OWNER TO voat;
 
 --
--- Name: stickiedsubmission; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: stickiedsubmission; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE stickiedsubmission (
@@ -361,10 +361,10 @@ CREATE TABLE stickiedsubmission (
 );
 
 
-ALTER TABLE public.stickiedsubmission OWNER TO tag;
+ALTER TABLE public.stickiedsubmission OWNER TO voat;
 
 --
--- Name: submission; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: submission; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE submission (
@@ -393,10 +393,10 @@ CREATE TABLE submission (
 );
 
 
-ALTER TABLE public.submission OWNER TO tag;
+ALTER TABLE public.submission OWNER TO voat;
 
 --
--- Name: submissionremovallog; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: submissionremovallog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE submissionremovallog (
@@ -407,10 +407,10 @@ CREATE TABLE submissionremovallog (
 );
 
 
-ALTER TABLE public.submissionremovallog OWNER TO tag;
+ALTER TABLE public.submissionremovallog OWNER TO voat;
 
 --
--- Name: submissionsavetracker; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: submissionsavetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE submissionsavetracker (
@@ -421,10 +421,10 @@ CREATE TABLE submissionsavetracker (
 );
 
 
-ALTER TABLE public.submissionsavetracker OWNER TO tag;
+ALTER TABLE public.submissionsavetracker OWNER TO voat;
 
 --
--- Name: submissionvotetracker; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: submissionvotetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE submissionvotetracker (
@@ -437,10 +437,10 @@ CREATE TABLE submissionvotetracker (
 );
 
 
-ALTER TABLE public.submissionvotetracker OWNER TO tag;
+ALTER TABLE public.submissionvotetracker OWNER TO voat;
 
 --
--- Name: subverse; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE subverse (
@@ -476,10 +476,10 @@ CREATE TABLE subverse (
 );
 
 
-ALTER TABLE public.subverse OWNER TO tag;
+ALTER TABLE public.subverse OWNER TO voat;
 
 --
--- Name: subverseban; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverseban; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE subverseban (
@@ -492,10 +492,10 @@ CREATE TABLE subverseban (
 );
 
 
-ALTER TABLE public.subverseban OWNER TO tag;
+ALTER TABLE public.subverseban OWNER TO voat;
 
 --
--- Name: subverseflair; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverseflair; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE subverseflair (
@@ -506,10 +506,10 @@ CREATE TABLE subverseflair (
 );
 
 
-ALTER TABLE public.subverseflair OWNER TO tag;
+ALTER TABLE public.subverseflair OWNER TO voat;
 
 --
--- Name: subversemoderator; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: subversemoderator; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE subversemoderator (
@@ -522,10 +522,10 @@ CREATE TABLE subversemoderator (
 );
 
 
-ALTER TABLE public.subversemoderator OWNER TO tag;
+ALTER TABLE public.subversemoderator OWNER TO voat;
 
 --
--- Name: subversesubscription; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: subversesubscription; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE subversesubscription (
@@ -535,10 +535,10 @@ CREATE TABLE subversesubscription (
 );
 
 
-ALTER TABLE public.subversesubscription OWNER TO tag;
+ALTER TABLE public.subversesubscription OWNER TO voat;
 
 --
--- Name: userbadge; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: userbadge; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE userbadge (
@@ -549,10 +549,10 @@ CREATE TABLE userbadge (
 );
 
 
-ALTER TABLE public.userbadge OWNER TO tag;
+ALTER TABLE public.userbadge OWNER TO voat;
 
 --
--- Name: userblockedsubverse; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: userblockedsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE userblockedsubverse (
@@ -563,10 +563,10 @@ CREATE TABLE userblockedsubverse (
 );
 
 
-ALTER TABLE public.userblockedsubverse OWNER TO tag;
+ALTER TABLE public.userblockedsubverse OWNER TO voat;
 
 --
--- Name: userblockeduser; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: userblockeduser; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE userblockeduser (
@@ -577,10 +577,10 @@ CREATE TABLE userblockeduser (
 );
 
 
-ALTER TABLE public.userblockeduser OWNER TO tag;
+ALTER TABLE public.userblockeduser OWNER TO voat;
 
 --
--- Name: userpreference; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: userpreference; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE userpreference (
@@ -603,10 +603,10 @@ CREATE TABLE userpreference (
 );
 
 
-ALTER TABLE public.userpreference OWNER TO tag;
+ALTER TABLE public.userpreference OWNER TO voat;
 
 --
--- Name: userset; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: userset; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE userset (
@@ -621,10 +621,10 @@ CREATE TABLE userset (
 );
 
 
-ALTER TABLE public.userset OWNER TO tag;
+ALTER TABLE public.userset OWNER TO voat;
 
 --
--- Name: usersetlist; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: usersetlist; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE usersetlist (
@@ -634,10 +634,10 @@ CREATE TABLE usersetlist (
 );
 
 
-ALTER TABLE public.usersetlist OWNER TO tag;
+ALTER TABLE public.usersetlist OWNER TO voat;
 
 --
--- Name: usersetsubscription; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: usersetsubscription; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE usersetsubscription (
@@ -648,10 +648,10 @@ CREATE TABLE usersetsubscription (
 );
 
 
-ALTER TABLE public.usersetsubscription OWNER TO tag;
+ALTER TABLE public.usersetsubscription OWNER TO voat;
 
 --
--- Name: uservisit; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: uservisit; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE uservisit (
@@ -662,10 +662,10 @@ CREATE TABLE uservisit (
 );
 
 
-ALTER TABLE public.uservisit OWNER TO tag;
+ALTER TABLE public.uservisit OWNER TO voat;
 
 --
--- Name: viewstatistic; Type: TABLE; Schema: public; Owner: tag; Tablespace: 
+-- Name: viewstatistic; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
 --
 
 CREATE TABLE viewstatistic (
@@ -674,10 +674,10 @@ CREATE TABLE viewstatistic (
 );
 
 
-ALTER TABLE public.viewstatistic OWNER TO tag;
+ALTER TABLE public.viewstatistic OWNER TO voat;
 
 --
--- Name: ad_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: ad_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY ad
@@ -685,7 +685,7 @@ ALTER TABLE ONLY ad
 
 
 --
--- Name: apiclient_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: apiclient_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY apiclient
@@ -693,7 +693,7 @@ ALTER TABLE ONLY apiclient
 
 
 --
--- Name: apicorspolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: apicorspolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY apicorspolicy
@@ -701,7 +701,7 @@ ALTER TABLE ONLY apicorspolicy
 
 
 --
--- Name: apilog_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: apilog_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY apilog
@@ -709,7 +709,7 @@ ALTER TABLE ONLY apilog
 
 
 --
--- Name: apipermissionpolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: apipermissionpolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY apipermissionpolicy
@@ -717,7 +717,7 @@ ALTER TABLE ONLY apipermissionpolicy
 
 
 --
--- Name: apithrottlepolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: apithrottlepolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY apithrottlepolicy
@@ -725,7 +725,7 @@ ALTER TABLE ONLY apithrottlepolicy
 
 
 --
--- Name: badge_id_pk; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: badge_id_pk; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY badge
@@ -733,7 +733,7 @@ ALTER TABLE ONLY badge
 
 
 --
--- Name: banneddomain_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: banneddomain_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY banneddomain
@@ -741,7 +741,7 @@ ALTER TABLE ONLY banneddomain
 
 
 --
--- Name: banneduser_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: banneduser_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY banneduser
@@ -749,7 +749,7 @@ ALTER TABLE ONLY banneduser
 
 
 --
--- Name: comment_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: comment_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY comment
@@ -757,7 +757,7 @@ ALTER TABLE ONLY comment
 
 
 --
--- Name: commentsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: commentsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY commentsavetracker
@@ -765,7 +765,7 @@ ALTER TABLE ONLY commentsavetracker
 
 
 --
--- Name: commentvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: commentvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY commentvotetracker
@@ -773,7 +773,7 @@ ALTER TABLE ONLY commentvotetracker
 
 
 --
--- Name: eventlog_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: eventlog_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY eventlog
@@ -781,7 +781,7 @@ ALTER TABLE ONLY eventlog
 
 
 --
--- Name: featuredsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: featuredsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY featuredsubverse
@@ -789,7 +789,7 @@ ALTER TABLE ONLY featuredsubverse
 
 
 --
--- Name: message_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: message_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY message
@@ -797,7 +797,7 @@ ALTER TABLE ONLY message
 
 
 --
--- Name: moderatorinvitation_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: moderatorinvitation_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY moderatorinvitation
@@ -805,7 +805,7 @@ ALTER TABLE ONLY moderatorinvitation
 
 
 --
--- Name: submission_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: submission_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY submission
@@ -813,7 +813,7 @@ ALTER TABLE ONLY submission
 
 
 --
--- Name: submissionsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: submissionsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY submissionsavetracker
@@ -821,7 +821,7 @@ ALTER TABLE ONLY submissionsavetracker
 
 
 --
--- Name: submissionvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: submissionvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY submissionvotetracker
@@ -829,7 +829,7 @@ ALTER TABLE ONLY submissionvotetracker
 
 
 --
--- Name: subverse_name_pk; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverse_name_pk; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY subverse
@@ -837,7 +837,7 @@ ALTER TABLE ONLY subverse
 
 
 --
--- Name: subverseban_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverseban_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY subverseban
@@ -845,7 +845,7 @@ ALTER TABLE ONLY subverseban
 
 
 --
--- Name: subverseflair_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: subverseflair_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY subverseflair
@@ -853,7 +853,7 @@ ALTER TABLE ONLY subverseflair
 
 
 --
--- Name: subversemoderator_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: subversemoderator_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY subversemoderator
@@ -861,7 +861,7 @@ ALTER TABLE ONLY subversemoderator
 
 
 --
--- Name: subversesubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: subversesubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY subversesubscription
@@ -869,7 +869,7 @@ ALTER TABLE ONLY subversesubscription
 
 
 --
--- Name: userbadge_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: userbadge_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY userbadge
@@ -877,7 +877,7 @@ ALTER TABLE ONLY userbadge
 
 
 --
--- Name: userblockedsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: userblockedsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY userblockedsubverse
@@ -885,7 +885,7 @@ ALTER TABLE ONLY userblockedsubverse
 
 
 --
--- Name: userblockeduser_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: userblockeduser_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY userblockeduser
@@ -893,7 +893,7 @@ ALTER TABLE ONLY userblockeduser
 
 
 --
--- Name: userset_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: userset_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY userset
@@ -901,7 +901,7 @@ ALTER TABLE ONLY userset
 
 
 --
--- Name: usersetlist_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: usersetlist_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY usersetlist
@@ -909,7 +909,7 @@ ALTER TABLE ONLY usersetlist
 
 
 --
--- Name: usersetsubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: usersetsubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY usersetsubscription
@@ -917,7 +917,7 @@ ALTER TABLE ONLY usersetsubscription
 
 
 --
--- Name: uservisit_pkey; Type: CONSTRAINT; Schema: public; Owner: tag; Tablespace: 
+-- Name: uservisit_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
 --
 
 ALTER TABLE ONLY uservisit
