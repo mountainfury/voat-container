@@ -37,6 +37,78 @@ CREATE TABLE IF NOT EXISTS `aspnetroles` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `aspnetuserclaims`
+--
+
+DROP TABLE IF EXISTS `aspnetuserclaims`;
+CREATE TABLE IF NOT EXISTS `aspnetuserclaims` (
+  `Id` int(11) NOT NULL,
+  `ClaimType` varchar(4096) NOT NULL,
+  `ClaimValue` varchar(4096) NOT NULL,
+  `UserId` varchar(128) NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aspnetuserlogins`
+--
+
+DROP TABLE IF EXISTS `aspnetuserlogins`;
+CREATE TABLE IF NOT EXISTS `aspnetuserlogins` (
+  `UserId` varchar(128) NOT NULL,
+  `LoginProvider` varchar(128) NOT NULL,
+  `ProviderKey` varchar(128) NOT NULL,
+  PRIMARY KEY (`UserId`,`LoginProvider`,`ProviderKey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aspnetuserroles`
+--
+
+DROP TABLE IF EXISTS `aspnetuserroles`;
+CREATE TABLE IF NOT EXISTS `aspnetuserroles` (
+  `UserId` varchar(128) NOT NULL,
+  `RoleId` varchar(128) NOT NULL,
+  PRIMARY KEY (`UserId`,`RoleId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `aspnetusers`
+--
+
+DROP TABLE IF EXISTS `aspnetusers`;
+CREATE TABLE IF NOT EXISTS `aspnetusers` (
+  `Id` varchar(128) NOT NULL,
+  `UserName` varchar(800) NOT NULL,
+  `PasswordHash` varchar(4096) NOT NULL,
+  `SecurityStamp` varchar(4096) NOT NULL,
+  `Email` varchar(4096) NOT NULL,
+  `IsConfirmed` tinyint(1) NOT NULL,
+  `EmailConfirmed` tinyint(1) NOT NULL,
+  `PhoneNumber` char(10) NOT NULL,
+  `PhoneNumberConfirmed` tinyint(1) NOT NULL,
+  `TwoFactorEnabled` tinyint(1) NOT NULL,
+  `LockoutEndDateUtc` datetime NOT NULL,
+  `LockoutEnabled` tinyint(1) NOT NULL,
+  `AccessFailedCount` int(11) NOT NULL,
+  `RegistrationDateTime` datetime NOT NULL,
+  `RecoveryQuestion` varchar(1024) NOT NULL,
+  `Answer` varchar(1024) NOT NULL,
+  `Partner` tinyint(1) NOT NULL,
+  `LastLoginFromIp` varchar(50) NOT NULL,
+  `LastLoginDateTime` datetime NOT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `membership`
 --
 
