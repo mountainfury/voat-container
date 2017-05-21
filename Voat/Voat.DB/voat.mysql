@@ -1,0 +1,452 @@
+# Converted with pg2mysql-1.9
+# Converted on Sat, 20 May 2017 22:19:13 -0400
+# Lightbox Technologies Inc. http://www.lightbox.ca
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone="+00:00";
+
+CREATE TABLE ad (
+    id int(11) NOT NULL,
+    isactive bit(1) DEFAULT 1 ,
+    graphicurl varchar(100) NOT NULL,
+    destinationurl text,
+    name varchar(100) NOT NULL,
+    description text NOT NULL,
+    startdate timestamp,
+    enddate timestamp,
+    subverse varchar(50),
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE apiclient (
+    id int(11) NOT NULL,
+    isactive bit(1) DEFAULT 1 ,
+    username varchar(100),
+    appname varchar(50) NOT NULL,
+    appdescription text,
+    appabouturl varchar(200),
+    redirecturl varchar(200),
+    publickey varchar(100) NOT NULL,
+    privatekey varchar(100) NOT NULL,
+    lastaccessdate timestamp,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP,
+    apithrottlepolicyid int(11),
+    apipermissionpolicyid int(11)
+) ENGINE=MyISAM;
+
+CREATE TABLE apicorspolicy (
+    id int(11) NOT NULL,
+    isactive bit(1) NOT NULL,
+    alloworigin varchar(100) NOT NULL,
+    allowmethods varchar(100) NOT NULL,
+    allowheaders varchar(100) NOT NULL,
+    allowcredentials bit(1),
+    maxage int(11),
+    username varchar(100),
+    description text,
+    createdby varchar(100) NOT NULL,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE apilog (
+    id int(11) NOT NULL,
+    apiclientid int(11) NOT NULL,
+    method varchar(10) NOT NULL,
+    url text NOT NULL,
+    headers text,
+    body text,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE apipermissionpolicy (
+    id int(11) NOT NULL,
+    name varchar(100) NOT NULL,
+    policy text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE apithrottlepolicy (
+    id int(11) NOT NULL,
+    name varchar(100) NOT NULL,
+    policy text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE badge (
+    id varchar(50) NOT NULL,
+    graphic varchar(50) NOT NULL,
+    title text NOT NULL,
+    name varchar(50) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE banneddomain (
+    id int(11) NOT NULL,
+    domain varchar(50) NOT NULL,
+    createdby varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    reason text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE banneduser (
+    id int(11) NOT NULL,
+    username varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    reason text NOT NULL,
+    createdby varchar(50) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE comment (
+    id int(11) NOT NULL,
+    votes int(11),
+    username varchar(50) NOT NULL,
+    content text NOT NULL,
+    creationdate timestamp NOT NULL,
+    lasteditdate timestamp,
+    submissionid int(11) NOT NULL,
+    upcount bigint DEFAULT 1 NOT NULL,
+    downcount bigint DEFAULT 0,
+    parentid int(11),
+    isanonymized bit(1) DEFAULT 0 ,
+    isdistinguished bit(1) DEFAULT 0 ,
+    formattedcontent text,
+    isdeleted bit(1) DEFAULT 0 
+) ENGINE=MyISAM;
+
+CREATE TABLE commentsavetracker (
+    id int(11) NOT NULL,
+    commentid int(11) NOT NULL,
+    username varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE commentvotetracker (
+    id int(11) NOT NULL,
+    commentid int(11) NOT NULL,
+    username varchar(50),
+    votestatus int(11),
+    creationdate timestamp,
+    ipaddress varchar(90)
+) ENGINE=MyISAM;
+
+CREATE TABLE contentremovallog (
+    commentid int(11) NOT NULL,
+    moderator varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    reason text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE defaultsubverse (
+    subverse varchar(20) NOT NULL,
+    `Order` int(11) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE eventlog (
+    id int(11) NOT NULL,
+    parentid int(11),
+    activityid varchar(50),
+    username varchar(100),
+    origin varchar(20),
+    `type` text NOT NULL,
+    message text NOT NULL,
+    category text NOT NULL,
+    exception text,
+    data text,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE featuredsubverse (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    createdby varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE message (
+    id int(11) NOT NULL,
+    correlationid varchar(36) NOT NULL,
+    parentid int(11),
+    `type` int(11) NOT NULL,
+    sender varchar(50) NOT NULL,
+    sendertype int(11) NOT NULL,
+    recipient varchar(50) NOT NULL,
+    recipienttype int(11) NOT NULL,
+    title text,
+    content text,
+    formattedcontent text,
+    subverse varchar(20),
+    submissionid int(11),
+    isanonymized bit(1) NOT NULL,
+    readdate timestamp,
+    createdby varchar(50),
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE moderatorinvitation (
+    id int(11) NOT NULL,
+    createdby varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    recipient varchar(50) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    power int(11) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE sessiontracker (
+    sessionid varchar(90) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE stickiedsubmission (
+    submissionid int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE submission (
+    id int(11) NOT NULL,
+    isarchived bit(1) DEFAULT 0 ,
+    votes int(11),
+    username varchar(50) NOT NULL,
+    content text,
+    creationdate timestamp NOT NULL,
+    `type` int(11) NOT NULL,
+    title varchar(200),
+    rank double precision DEFAULT 0.0 NOT NULL,
+    subverse varchar(20),
+    upcount bigint DEFAULT 1 NOT NULL,
+    downcount bigint DEFAULT 0 NOT NULL,
+    thumbnail varchar(40),
+    lasteditdate timestamp,
+    flairlabel varchar(50),
+    flaircss varchar(50),
+    views double precision DEFAULT 1.0 NOT NULL,
+    isdeleted bit(1) DEFAULT 0 ,
+    isanonymized bit(1) DEFAULT 0 ,
+    relativerank double precision DEFAULT 0.0 NOT NULL,
+    url text,
+    formattedcontent text
+) ENGINE=MyISAM;
+
+CREATE TABLE submissionremovallog (
+    submissionid int(11) NOT NULL,
+    moderator varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    reason text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE submissionsavetracker (
+    id int(11) NOT NULL,
+    submissionid int(11) NOT NULL,
+    username varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE submissionvotetracker (
+    id int(11) NOT NULL,
+    submissionid int(11) NOT NULL,
+    username varchar(50),
+    votestatus int(11),
+    creationdate timestamp,
+    ipaddress varchar(90)
+) ENGINE=MyISAM;
+
+CREATE TABLE subverse (
+    name varchar(20) NOT NULL,
+    title text NOT NULL,
+    description text,
+    sidebar text,
+    submissiontext text,
+    language varchar(10),
+    `type` varchar(10) NOT NULL,
+    submitlinklabel varchar(50),
+    submitpostlabel varchar(50),
+    spamfilterlink varchar(10),
+    spamfilterpost varchar(10),
+    spamfiltercomment varchar(10),
+    isadult bit(1) DEFAULT 0 ,
+    isdefaultallowed bit(1) DEFAULT 1 ,
+    isthumbnailenabled bit(1) DEFAULT 1 ,
+    excludesitewidebans bit(1) DEFAULT 0 ,
+    istrafficstatspublic bit(1) DEFAULT 0 ,
+    minutestohidecomments int(11),
+    creationdate timestamp NOT NULL,
+    stylesheet text,
+    subscribercount int(11),
+    isprivate bit(1) DEFAULT 0 ,
+    isauthorizedonly bit(1) DEFAULT 0 ,
+    isanonymized bit(1) DEFAULT 0 ,
+    lastsubmissiondate timestamp,
+    minccpfordownvote int(11) DEFAULT 0 NOT NULL,
+    isadminprivate bit(1) DEFAULT 0 ,
+    isadmindisabled bit(1),
+    createdby varchar(50)
+) ENGINE=MyISAM;
+
+CREATE TABLE subverseban (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    username varchar(50) NOT NULL,
+    createdby varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL,
+    reason text NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE subverseflair (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    label varchar(50),
+    cssclass varchar(50)
+) ENGINE=MyISAM;
+
+CREATE TABLE subversemoderator (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    username varchar(50) NOT NULL,
+    power int(11) NOT NULL,
+    createdby varchar(50),
+    creationdate timestamp
+) ENGINE=MyISAM;
+
+CREATE TABLE subversesubscription (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    username varchar(50) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE userbadge (
+    id int(11) NOT NULL,
+    username varchar(50) NOT NULL,
+    badgeid varchar(50) NOT NULL,
+    creationdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE userblockedsubverse (
+    id int(11) NOT NULL,
+    subverse varchar(20) NOT NULL,
+    username varchar(50) NOT NULL,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM;
+
+CREATE TABLE userblockeduser (
+    id int(11) NOT NULL,
+    blockuser varchar(50) NOT NULL,
+    username varchar(50) NOT NULL,
+    creationdate timestamp DEFAULT CURRENT_TIMESTAMP
+) ENGINE=MyISAM;
+
+CREATE TABLE userpreference (
+    username varchar(50) NOT NULL,
+    disablecss bit(1) NOT NULL,
+    nightmode bit(1) NOT NULL,
+    language varchar(50) NOT NULL,
+    openinnewwindow bit(1) NOT NULL,
+    enableadultcontent bit(1) NOT NULL,
+    displayvotes bit(1) NOT NULL,
+    displaysubscriptions bit(1) DEFAULT 0 ,
+    usesubscriptionsmenu bit(1) DEFAULT 1 ,
+    bio varchar(100),
+    avatar varchar(50),
+    displayads bit(1) DEFAULT 0 ,
+    displaycommentcount int(11),
+    highlightminutes int(11),
+    vanitytitle varchar(50),
+    collapsecommentlimit int(11)
+) ENGINE=MyISAM;
+
+CREATE TABLE userset (
+    id int(11) NOT NULL,
+    name varchar(20) NOT NULL,
+    description varchar(200) NOT NULL,
+    createdby varchar(20) NOT NULL,
+    creationdate timestamp NOT NULL,
+    ispublic bit(1) DEFAULT 1 ,
+    subscribercount int(11) DEFAULT 1 NOT NULL,
+    isdefault bit(1) DEFAULT 0 
+) ENGINE=MyISAM;
+
+CREATE TABLE usersetlist (
+    id int(11) NOT NULL,
+    usersetid int(11) NOT NULL,
+    subverse varchar(20) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE usersetsubscription (
+    id int(11) NOT NULL,
+    usersetid int(11) NOT NULL,
+    `Order` int(11) DEFAULT 0 NOT NULL,
+    username varchar(20) NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE uservisit (
+    id int(11) NOT NULL,
+    submissionid int(11) NOT NULL,
+    username varchar(50) NOT NULL,
+    lastvisitdate timestamp NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE viewstatistic (
+    submissionid int(11) NOT NULL,
+    viewerid varchar(90) NOT NULL
+) ENGINE=MyISAM;
+
+ALTER TABLE ad
+    ADD CONSTRAINT ad_pkey PRIMARY KEY (id);
+ALTER TABLE apiclient
+    ADD CONSTRAINT apiclient_pkey PRIMARY KEY (id);
+ALTER TABLE apicorspolicy
+    ADD CONSTRAINT apicorspolicy_pkey PRIMARY KEY (id);
+ALTER TABLE apilog
+    ADD CONSTRAINT apilog_pkey PRIMARY KEY (id);
+ALTER TABLE apipermissionpolicy
+    ADD CONSTRAINT apipermissionpolicy_pkey PRIMARY KEY (id);
+ALTER TABLE apithrottlepolicy
+    ADD CONSTRAINT apithrottlepolicy_pkey PRIMARY KEY (id);
+ALTER TABLE badge
+    ADD CONSTRAINT badge_id_pk PRIMARY KEY (id);
+ALTER TABLE banneddomain
+    ADD CONSTRAINT banneddomain_pkey PRIMARY KEY (id);
+ALTER TABLE banneduser
+    ADD CONSTRAINT banneduser_pkey PRIMARY KEY (id);
+ALTER TABLE comment
+    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+ALTER TABLE commentsavetracker
+    ADD CONSTRAINT commentsavetracker_pkey PRIMARY KEY (id);
+ALTER TABLE commentvotetracker
+    ADD CONSTRAINT commentvotetracker_pkey PRIMARY KEY (id);
+ALTER TABLE eventlog
+    ADD CONSTRAINT eventlog_pkey PRIMARY KEY (id);
+ALTER TABLE featuredsubverse
+    ADD CONSTRAINT featuredsubverse_pkey PRIMARY KEY (id);
+ALTER TABLE message
+    ADD CONSTRAINT message_pkey PRIMARY KEY (id);
+ALTER TABLE moderatorinvitation
+    ADD CONSTRAINT moderatorinvitation_pkey PRIMARY KEY (id);
+ALTER TABLE submission
+    ADD CONSTRAINT submission_pkey PRIMARY KEY (id);
+ALTER TABLE submissionsavetracker
+    ADD CONSTRAINT submissionsavetracker_pkey PRIMARY KEY (id);
+ALTER TABLE submissionvotetracker
+    ADD CONSTRAINT submissionvotetracker_pkey PRIMARY KEY (id);
+ALTER TABLE subverse
+    ADD CONSTRAINT subverse_name_pk PRIMARY KEY (name);
+ALTER TABLE subverseban
+    ADD CONSTRAINT subverseban_pkey PRIMARY KEY (id);
+ALTER TABLE subverseflair
+    ADD CONSTRAINT subverseflair_pkey PRIMARY KEY (id);
+ALTER TABLE subversemoderator
+    ADD CONSTRAINT subversemoderator_pkey PRIMARY KEY (id);
+ALTER TABLE subversesubscription
+    ADD CONSTRAINT subversesubscription_pkey PRIMARY KEY (id);
+ALTER TABLE userbadge
+    ADD CONSTRAINT userbadge_pkey PRIMARY KEY (id);
+ALTER TABLE userblockedsubverse
+    ADD CONSTRAINT userblockedsubverse_pkey PRIMARY KEY (id);
+ALTER TABLE userblockeduser
+    ADD CONSTRAINT userblockeduser_pkey PRIMARY KEY (id);
+ALTER TABLE userset
+    ADD CONSTRAINT userset_pkey PRIMARY KEY (id);
+ALTER TABLE usersetlist
+    ADD CONSTRAINT usersetlist_pkey PRIMARY KEY (id);
+ALTER TABLE usersetsubscription
+    ADD CONSTRAINT usersetsubscription_pkey PRIMARY KEY (id);
+ALTER TABLE uservisit
+    ADD CONSTRAINT uservisit_pkey PRIMARY KEY (id);
+
