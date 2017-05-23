@@ -1,1124 +1,1079 @@
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
--- PostgreSQL database dump
---
-
-SET statement_timeout = 0;
-SET client_encoding = 'UTF8';
-SET standard_conforming_strings = on;
-SET check_function_bodies = false;
-SET client_min_messages = warning;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
+-- Host: localhost    Database: voat
+-- ------------------------------------------------------
+-- Server version	5.7.18
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO,POSTGRESQL' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+-- Current Database: "voat"
 --
 
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ "voat" /*!40100 DEFAULT CHARACTER SET latin1 */;
 
-
-SET search_path = public, pg_catalog;
-
-SET default_tablespace = '';
-
-SET default_with_oids = false;
+USE "voat";
 
 --
--- Name: ad; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Table structure for table "Ad"
 --
 
-CREATE TABLE ad (
-    id integer NOT NULL,
-    isactive bit(1) DEFAULT (1)::bit(1) NOT NULL,
-    graphicurl character varying(100) NOT NULL,
-    destinationurl character varying(1000),
-    name character varying(100) NOT NULL,
-    description character varying(2000) NOT NULL,
-    startdate timestamp without time zone,
-    enddate timestamp without time zone,
-    subverse character varying(50),
-    creationdate timestamp without time zone DEFAULT now() NOT NULL
+DROP TABLE IF EXISTS "Ad";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Ad" (
+  "ID" int NOT NULL,
+  "IsActive" bit DEFAULT b'1',
+  "GraphicUrl" varchar(100) NOT NULL,
+  "DestinationUrl" text,
+  "Name" varchar(100) NOT NULL,
+  "Description" text NOT NULL,
+  "StartDate" timestamp NOT NULL DEFAULT now(),
+  "EndDate" timestamp DEFAULT NULL,
+  "Subverse" varchar(50) DEFAULT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.ad OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: apiclient; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Ad"
 --
 
-CREATE TABLE apiclient (
-    id integer NOT NULL,
-    isactive bit(1) DEFAULT (1)::bit(1) NOT NULL,
-    username character varying(100),
-    appname character varying(50) NOT NULL,
-    appdescription character varying(2000),
-    appabouturl character varying(200),
-    redirecturl character varying(200),
-    publickey character varying(100) NOT NULL,
-    privatekey character varying(100) NOT NULL,
-    lastaccessdate timestamp without time zone,
-    creationdate timestamp without time zone DEFAULT now(),
-    apithrottlepolicyid integer,
-    apipermissionpolicyid integer
+
+/*!40000 ALTER TABLE "Ad" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Ad" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ApiClient"
+--
+
+DROP TABLE IF EXISTS "ApiClient";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ApiClient" (
+  "ID" int NOT NULL,
+  "IsActive" bit DEFAULT b'1',
+  "UserName" varchar(100) DEFAULT NULL,
+  "AppName" varchar(50) NOT NULL,
+  "AppDescription" text,
+  "AppAboutUrl" varchar(200) DEFAULT NULL,
+  "RedirectUrl" varchar(200) DEFAULT NULL,
+  "PublicKey" varchar(100) NOT NULL,
+  "privateKey" varchar(100) NOT NULL,
+  "LastAccessDate" timestamp NOT NULL DEFAULT now(),
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "ApiThrottlePolicyID" int DEFAULT NULL,
+  "ApiPermissionPolicyID" int DEFAULT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.apiclient OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: apicorspolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ApiClient"
 --
 
-CREATE TABLE apicorspolicy (
-    id integer NOT NULL,
-    isactive bit(1) NOT NULL,
-    alloworigin character varying(100) NOT NULL,
-    allowmethods character varying(100) NOT NULL,
-    allowheaders character varying(100) NOT NULL,
-    allowcredentials bit(1),
-    maxage integer,
-    username character varying(100),
-    description character varying(500),
-    createdby character varying(100) NOT NULL,
-    creationdate timestamp without time zone DEFAULT now() NOT NULL
+
+/*!40000 ALTER TABLE "ApiClient" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ApiClient" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ApiCorsPolicy"
+--
+
+DROP TABLE IF EXISTS "ApiCorsPolicy";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ApiCorsPolicy" (
+  "ID" int NOT NULL,
+  "IsActive" bit NOT NULL,
+  "AllowOrigin" varchar(100) NOT NULL,
+  "AllowMethods" varchar(100) NOT NULL,
+  "AllowHeaders" varchar(100) NOT NULL,
+  "AllowCredentials" bit DEFAULT NULL,
+  "MaxAge" int DEFAULT NULL,
+  "UserName" varchar(100) DEFAULT NULL,
+  "Description" text,
+  "CreatedBy" varchar(100) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.apicorspolicy OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: apilog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ApiCorsPolicy"
 --
 
-CREATE TABLE apilog (
-    id integer NOT NULL,
-    apiclientid integer NOT NULL,
-    method character varying(10) NOT NULL,
-    url character varying(500) NOT NULL,
-    headers text,
-    body text,
-    creationdate timestamp without time zone DEFAULT now() NOT NULL
+
+/*!40000 ALTER TABLE "ApiCorsPolicy" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ApiCorsPolicy" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ApiLog"
+--
+
+DROP TABLE IF EXISTS "ApiLog";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ApiLog" (
+  "ID" int NOT NULL,
+  "ApiClientID" int NOT NULL,
+  "Method" varchar(10) NOT NULL,
+  "Url" text NOT NULL,
+  "Headers" text,
+  "Body" text,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.apilog OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: apipermissionpolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ApiLog"
 --
 
-CREATE TABLE apipermissionpolicy (
-    id integer NOT NULL,
-    name character varying(100) NOT NULL,
-    policy character varying(2000) NOT NULL
+
+/*!40000 ALTER TABLE "ApiLog" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ApiLog" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ApiPermissionPolicy"
+--
+
+DROP TABLE IF EXISTS "ApiPermissionPolicy";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ApiPermissionPolicy" (
+  "ID" int NOT NULL,
+  "Name" varchar(100) NOT NULL,
+  "Policy" text NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.apipermissionpolicy OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: apithrottlepolicy; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ApiPermissionPolicy"
 --
 
-CREATE TABLE apithrottlepolicy (
-    id integer NOT NULL,
-    name character varying(100) NOT NULL,
-    policy character varying(2000) NOT NULL
+
+/*!40000 ALTER TABLE "ApiPermissionPolicy" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ApiPermissionPolicy" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ApiThrottlePolicy"
+--
+
+DROP TABLE IF EXISTS "ApiThrottlePolicy";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ApiThrottlePolicy" (
+  "ID" int NOT NULL,
+  "Name" varchar(100) NOT NULL,
+  "Policy" text NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.apithrottlepolicy OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: badge; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ApiThrottlePolicy"
 --
 
-CREATE TABLE badge (
-    id character varying(50) NOT NULL,
-    graphic character varying(50) NOT NULL,
-    title character varying(300) NOT NULL,
-    name character varying(50) NOT NULL
+
+/*!40000 ALTER TABLE "ApiThrottlePolicy" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ApiThrottlePolicy" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "Badge"
+--
+
+DROP TABLE IF EXISTS "Badge";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Badge" (
+  "ID" varchar(50) NOT NULL,
+  "Graphic" varchar(50) NOT NULL,
+  "Title" text NOT NULL,
+  "Name" varchar(50) NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.badge OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: banneddomain; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Badge"
 --
 
-CREATE TABLE banneddomain (
-    id integer NOT NULL,
-    domain character varying(50) NOT NULL,
-    createdby character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    reason character varying(500) NOT NULL
+
+/*!40000 ALTER TABLE "Badge" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Badge" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "BannedDomain"
+--
+
+DROP TABLE IF EXISTS "BannedDomain";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "BannedDomain" (
+  "ID" int NOT NULL,
+  "Domain" varchar(50) NOT NULL,
+  "CreatedBy" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Reason" text NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.banneddomain OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: banneduser; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "BannedDomain"
 --
 
-CREATE TABLE banneduser (
-    id integer NOT NULL,
-    username character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    reason character varying(500) NOT NULL,
-    createdby character varying(50) NOT NULL
+
+/*!40000 ALTER TABLE "BannedDomain" DISABLE KEYS */;
+/*!40000 ALTER TABLE "BannedDomain" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "BannedUser"
+--
+
+DROP TABLE IF EXISTS "BannedUser";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "BannedUser" (
+  "ID" int NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Reason" text NOT NULL,
+  "CreatedBy" varchar(50) NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.banneduser OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: comment; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "BannedUser"
 --
 
-CREATE TABLE comment (
-    id integer NOT NULL,
-    votes integer,
-    username character varying(50) NOT NULL,
-    content text NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    lasteditdate timestamp without time zone,
-    submissionid integer NOT NULL,
-    upcount bigint DEFAULT 1 NOT NULL,
-    downcount bigint DEFAULT 0,
-    parentid integer,
-    isanonymized bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    isdistinguished bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    formattedcontent text,
-    isdeleted bit(1) DEFAULT (0)::bit(1)
+
+/*!40000 ALTER TABLE "BannedUser" DISABLE KEYS */;
+/*!40000 ALTER TABLE "BannedUser" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "Comment"
+--
+
+DROP TABLE IF EXISTS "Comment";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Comment" (
+  "ID" int NOT NULL,
+  "Votes" int DEFAULT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "Content" text NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "LastEditDate" timestamp ,
+  "SubmissionID" int NOT NULL,
+  "UpCount" bigint NOT NULL DEFAULT '1',
+  "DownCount" bigint DEFAULT '0',
+  "ParentID" int DEFAULT NULL,
+  "IsAnonymized" bit DEFAULT b'0',
+  "IsDistinguished" bit DEFAULT b'0',
+  "FormattedContent" text,
+  "IsDeleted" bit DEFAULT b'0',
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.comment OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: commentsavetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Comment"
 --
 
-CREATE TABLE commentsavetracker (
-    id integer NOT NULL,
-    commentid integer NOT NULL,
-    username character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "Comment" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Comment" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "CommentSaveTracker"
+--
+
+DROP TABLE IF EXISTS "CommentSaveTracker";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "CommentSaveTracker" (
+  "ID" int NOT NULL,
+  "CommentID" int NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.commentsavetracker OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: commentvotetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "CommentSaveTracker"
 --
 
-CREATE TABLE commentvotetracker (
-    id integer NOT NULL,
-    commentid integer NOT NULL,
-    username character varying(50),
-    votestatus integer,
-    creationdate timestamp without time zone,
-    ipaddress character varying(90)
+
+/*!40000 ALTER TABLE "CommentSaveTracker" DISABLE KEYS */;
+/*!40000 ALTER TABLE "CommentSaveTracker" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "CommentVoteTracker"
+--
+
+DROP TABLE IF EXISTS "CommentVoteTracker";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "CommentVoteTracker" (
+  "ID" int NOT NULL,
+  "CommentID" int NOT NULL,
+  "UserName" varchar(50) DEFAULT NULL,
+  "VoteStatus" int DEFAULT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "IPAddress" varchar(90) DEFAULT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.commentvotetracker OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: contentremovallog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "CommentVoteTracker"
 --
 
-CREATE TABLE contentremovallog (
-    commentid integer NOT NULL,
-    moderator character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    reason character varying(500) NOT NULL
+
+/*!40000 ALTER TABLE "CommentVoteTracker" DISABLE KEYS */;
+/*!40000 ALTER TABLE "CommentVoteTracker" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ContentRemovalLog"
+--
+
+DROP TABLE IF EXISTS "ContentRemovalLog";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ContentRemovalLog" (
+  "CommentID" int NOT NULL,
+  "Moderator" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Reason" text NOT NULL
 );
-
-
-ALTER TABLE public.contentremovallog OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: defaultsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ContentRemovalLog"
 --
 
-CREATE TABLE defaultsubverse (
-    subverse character varying(20) NOT NULL,
-    "Order" integer NOT NULL
+
+/*!40000 ALTER TABLE "ContentRemovalLog" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ContentRemovalLog" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "DefaultSubverse"
+--
+
+DROP TABLE IF EXISTS "DefaultSubverse";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "DefaultSubverse" (
+  "Subverse" varchar(20) NOT NULL,
+  "Order" int NOT NULL
 );
-
-
-ALTER TABLE public.defaultsubverse OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: eventlog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "DefaultSubverse"
 --
 
-CREATE TABLE eventlog (
-    id integer NOT NULL,
-    parentid integer,
-    activityid character varying(50),
-    username character varying(100),
-    origin character varying(20),
-    type character varying(300) NOT NULL,
-    message character varying(1500) NOT NULL,
-    category character varying(1000) NOT NULL,
-    exception text,
-    data text,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "DefaultSubverse" DISABLE KEYS */;
+/*!40000 ALTER TABLE "DefaultSubverse" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "EventLog"
+--
+
+DROP TABLE IF EXISTS "EventLog";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "EventLog" (
+  "ID" int NOT NULL,
+  "ParentID" int DEFAULT NULL,
+  "ActivityID" varchar(50) DEFAULT NULL,
+  "UserName" varchar(100) DEFAULT NULL,
+  "Origin" varchar(20) DEFAULT NULL,
+  "Type" text NOT NULL,
+  "Message" text NOT NULL,
+  "Category" text NOT NULL,
+  "Exception" text,
+  "Data" text,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.eventlog OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: featuredsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "EventLog"
 --
 
-CREATE TABLE featuredsubverse (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    createdby character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "EventLog" DISABLE KEYS */;
+/*!40000 ALTER TABLE "EventLog" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "FeaturedSubverse"
+--
+
+DROP TABLE IF EXISTS "FeaturedSubverse";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "FeaturedSubverse" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "CreatedBy" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.featuredsubverse OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: message; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "FeaturedSubverse"
 --
 
-CREATE TABLE message (
-    id integer NOT NULL,
-    correlationid character varying(36) NOT NULL,
-    parentid integer,
-    type integer NOT NULL,
-    sender character varying(50) NOT NULL,
-    sendertype integer NOT NULL,
-    recipient character varying(50) NOT NULL,
-    recipienttype integer NOT NULL,
-    title character varying(500),
-    content text,
-    formattedcontent text,
-    subverse character varying(20),
-    submissionid integer,
-    isanonymized bit(1) NOT NULL,
-    readdate timestamp without time zone,
-    createdby character varying(50),
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "FeaturedSubverse" DISABLE KEYS */;
+/*!40000 ALTER TABLE "FeaturedSubverse" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "Message"
+--
+
+DROP TABLE IF EXISTS "Message";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Message" (
+  "ID" int NOT NULL,
+  "CorrelationID" varchar(36) NOT NULL,
+  "ParentID" int DEFAULT NULL,
+  "Type" int NOT NULL,
+  "Sender" varchar(50) NOT NULL,
+  "SenderType" int NOT NULL,
+  "Recipient" varchar(50) NOT NULL,
+  "RecipientType" int NOT NULL,
+  "Title" text,
+  "Content" text,
+  "FormattedContent" text,
+  "Subverse" varchar(20) DEFAULT NULL,
+  "SubmissionID" int DEFAULT NULL,
+  "IsAnonymized" bit NOT NULL,
+  "ReadDate" timestamp NOT NULL DEFAULT now(),
+  "CreatedBy" varchar(50) DEFAULT NULL,
+  "CreationDate" timestamp ,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.message OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: moderatorinvitation; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Message"
 --
 
-CREATE TABLE moderatorinvitation (
-    id integer NOT NULL,
-    createdby character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    recipient character varying(50) NOT NULL,
-    subverse character varying(20) NOT NULL,
-    power integer NOT NULL
+
+/*!40000 ALTER TABLE "Message" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Message" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ModeratorInvitation"
+--
+
+DROP TABLE IF EXISTS "ModeratorInvitation";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ModeratorInvitation" (
+  "ID" int NOT NULL,
+  "CreatedBy" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Recipient" varchar(50) NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "Power" int NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.moderatorinvitation OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: sessiontracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ModeratorInvitation"
 --
 
-CREATE TABLE sessiontracker (
-    sessionid character varying(90) NOT NULL,
-    subverse character varying(20) NOT NULL,
-    creationdate timestamp without time zone DEFAULT now() NOT NULL
+
+/*!40000 ALTER TABLE "ModeratorInvitation" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ModeratorInvitation" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SessionTracker"
+--
+
+DROP TABLE IF EXISTS "SessionTracker";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SessionTracker" (
+  "SessionID" varchar(90) NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now()
 );
-
-
-ALTER TABLE public.sessiontracker OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: stickiedsubmission; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SessionTracker"
 --
 
-CREATE TABLE stickiedsubmission (
-    submissionid integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "SessionTracker" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SessionTracker" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "StickiedSubmission"
+--
+
+DROP TABLE IF EXISTS "StickiedSubmission";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "StickiedSubmission" (
+  "SubmissionID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now()
 );
-
-
-ALTER TABLE public.stickiedsubmission OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: submission; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "StickiedSubmission"
 --
 
-CREATE TABLE submission (
-    id integer NOT NULL,
-    isarchived bit(1) DEFAULT (0)::bit(1),
-    votes integer,
-    username character varying(50) NOT NULL,
-    content text,
-    creationdate timestamp without time zone NOT NULL,
-    type integer NOT NULL,
-    title character varying(200),
-    rank double precision DEFAULT 0.0 NOT NULL,
-    subverse character varying(20),
-    upcount bigint DEFAULT 1 NOT NULL,
-    downcount bigint DEFAULT 0 NOT NULL,
-    thumbnail character(40),
-    lasteditdate timestamp without time zone,
-    flairlabel character varying(50),
-    flaircss character varying(50),
-    views double precision DEFAULT 1.0 NOT NULL,
-    isdeleted bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    isanonymized bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    relativerank double precision DEFAULT 0.0 NOT NULL,
-    url character varying(3000),
-    formattedcontent text
+
+/*!40000 ALTER TABLE "StickiedSubmission" DISABLE KEYS */;
+/*!40000 ALTER TABLE "StickiedSubmission" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "Submission"
+--
+
+DROP TABLE IF EXISTS "Submission";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Submission" (
+  "ID" int NOT NULL,
+  "IsArchived" bit DEFAULT b'0',
+  "Votes" int DEFAULT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "Content" text,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Type" int NOT NULL,
+  "Title" varchar(200) DEFAULT NULL,
+  "Rank" double precision NOT NULL DEFAULT '0',
+  "Subverse" varchar(20) DEFAULT NULL,
+  "UpCount" bigint NOT NULL DEFAULT '1',
+  "DownCount" bigint NOT NULL DEFAULT '0',
+  "Thumbnail" varchar(40) DEFAULT NULL,
+  "LastEditDate" timestamp ,
+  "FlairLabel" varchar(50) DEFAULT NULL,
+  "FlairCss" varchar(50) DEFAULT NULL,
+  "Views" double precision NOT NULL DEFAULT '1',
+  "IsDeleted" bit DEFAULT b'0',
+  "IsAnonymized" bit DEFAULT b'0',
+  "RelativeRank" double precision NOT NULL DEFAULT '0',
+  "Url" text,
+  "FormattedContent" text,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.submission OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: submissionremovallog; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Submission"
 --
 
-CREATE TABLE submissionremovallog (
-    submissionid integer NOT NULL,
-    moderator character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    reason character varying(500) NOT NULL
+
+/*!40000 ALTER TABLE "Submission" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Submission" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubmissionRemovalLog"
+--
+
+DROP TABLE IF EXISTS "SubmissionRemovalLog";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubmissionRemovalLog" (
+  "SubmissionID" int NOT NULL,
+  "Moderator" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Reason" text NOT NULL
 );
-
-
-ALTER TABLE public.submissionremovallog OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: submissionsavetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubmissionRemovalLog"
 --
 
-CREATE TABLE submissionsavetracker (
-    id integer NOT NULL,
-    submissionid integer NOT NULL,
-    username character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "SubmissionRemovalLog" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubmissionRemovalLog" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubmissionSaveTracker"
+--
+
+DROP TABLE IF EXISTS "SubmissionSaveTracker";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubmissionSaveTracker" (
+  "ID" int NOT NULL,
+  "SubmissionID" int NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.submissionsavetracker OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: submissionvotetracker; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubmissionSaveTracker"
 --
 
-CREATE TABLE submissionvotetracker (
-    id integer NOT NULL,
-    submissionid integer NOT NULL,
-    username character varying(50),
-    votestatus integer,
-    creationdate timestamp without time zone,
-    ipaddress character varying(90)
+
+/*!40000 ALTER TABLE "SubmissionSaveTracker" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubmissionSaveTracker" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubmissionVoteTracker"
+--
+
+DROP TABLE IF EXISTS "SubmissionVoteTracker";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubmissionVoteTracker" (
+  "ID" int NOT NULL,
+  "SubmissionID" int NOT NULL,
+  "UserName" varchar(50) DEFAULT NULL,
+  "VoteStatus" int DEFAULT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "IPAddress" varchar(90) DEFAULT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.submissionvotetracker OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: subverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubmissionVoteTracker"
 --
 
-CREATE TABLE subverse (
-    name character varying(20) NOT NULL,
-    title character varying(500) NOT NULL,
-    description character varying(500),
-    sidebar character varying(4000),
-    submissiontext character varying(500),
-    language character varying(10),
-    type character varying(10) NOT NULL,
-    submitlinklabel character varying(50),
-    submitpostlabel character varying(50),
-    spamfilterlink character varying(10),
-    spamfilterpost character varying(10),
-    spamfiltercomment character varying(10),
-    isadult bit(1) DEFAULT (0)::bit(1),
-    isdefaultallowed bit(1) DEFAULT (1)::bit(1),
-    isthumbnailenabled bit(1) DEFAULT (1)::bit(1),
-    excludesitewidebans bit(1) DEFAULT (0)::bit(1),
-    istrafficstatspublic bit(1) DEFAULT (0)::bit(1),
-    minutestohidecomments integer,
-    creationdate timestamp without time zone NOT NULL,
-    stylesheet text,
-    subscribercount integer,
-    isprivate bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    isauthorizedonly bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    isanonymized bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    lastsubmissiondate timestamp without time zone,
-    minccpfordownvote integer DEFAULT 0 NOT NULL,
-    isadminprivate bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    isadmindisabled bit(1),
-    createdby character varying(50)
+
+/*!40000 ALTER TABLE "SubmissionVoteTracker" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubmissionVoteTracker" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "Subverse"
+--
+
+DROP TABLE IF EXISTS "Subverse";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "Subverse" (
+  "Name" varchar(20) NOT NULL,
+  "Title" text NOT NULL,
+  "Description" text,
+  "SideBar" text,
+  "SubmissionText" text,
+  "Language" varchar(10) DEFAULT NULL,
+  "Type" varchar(10) NOT NULL,
+  "SubmitLinkLabel" varchar(50) DEFAULT NULL,
+  "SubmitPostLabel" varchar(50) DEFAULT NULL,
+  "SpamFilterLink" varchar(10) DEFAULT NULL,
+  "SpamFilterPost" varchar(10) DEFAULT NULL,
+  "SpamFilterComment" varchar(10) DEFAULT NULL,
+  "IsAdult" bit DEFAULT b'0',
+  "IsDefaultAllowed" bit DEFAULT b'1',
+  "IsThumbnailEnabled" bit DEFAULT b'1',
+  "ExcludeSitewideBans" bit DEFAULT b'0',
+  "IsTrafficStatsPublic" bit DEFAULT b'0',
+  "MinutesToHideComments" int DEFAULT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Stylesheet" text,
+  "SubscriberCount" int DEFAULT NULL,
+  "IsPrivate" bit DEFAULT b'0',
+  "IsAuthorizedOnly" bit DEFAULT b'0',
+  "IsAnonymized" bit DEFAULT b'0',
+  "LastSubmissionDate" timestamp ,
+  "MinCCPForDownVote" int NOT NULL DEFAULT '0',
+  "IsAdminPrivate" bit DEFAULT b'0',
+  "IsAdminDisabled" bit DEFAULT NULL,
+  "CreatedBy" varchar(50) DEFAULT NULL,
+  PRIMARY KEY ("Name")
 );
-
-
-ALTER TABLE public.subverse OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: subverseban; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "Subverse"
 --
 
-CREATE TABLE subverseban (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    username character varying(50) NOT NULL,
-    createdby character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    reason character varying(500) NOT NULL
+
+/*!40000 ALTER TABLE "Subverse" DISABLE KEYS */;
+/*!40000 ALTER TABLE "Subverse" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubverseBan"
+--
+
+DROP TABLE IF EXISTS "SubverseBan";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubverseBan" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreatedBy" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "Reason" text NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.subverseban OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: subverseflair; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubverseBan"
 --
 
-CREATE TABLE subverseflair (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    label character varying(50),
-    cssclass character varying(50)
+
+/*!40000 ALTER TABLE "SubverseBan" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubverseBan" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubverseFlair"
+--
+
+DROP TABLE IF EXISTS "SubverseFlair";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubverseFlair" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "Label" varchar(50) DEFAULT NULL,
+  "CssClass" varchar(50) DEFAULT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.subverseflair OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: subversemoderator; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubverseFlair"
 --
 
-CREATE TABLE subversemoderator (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    username character varying(50) NOT NULL,
-    power integer NOT NULL,
-    createdby character varying(50),
-    creationdate timestamp without time zone
+
+/*!40000 ALTER TABLE "SubverseFlair" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubverseFlair" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubverseModerator"
+--
+
+DROP TABLE IF EXISTS "SubverseModerator";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubverseModerator" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "Power" int NOT NULL,
+  "CreatedBy" varchar(50) DEFAULT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.subversemoderator OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: subversesubscription; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubverseModerator"
 --
 
-CREATE TABLE subversesubscription (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    username character varying(50) NOT NULL
+
+/*!40000 ALTER TABLE "SubverseModerator" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubverseModerator" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "SubverseSubscription"
+--
+
+DROP TABLE IF EXISTS "SubverseSubscription";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "SubverseSubscription" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.subversesubscription OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: userbadge; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "SubverseSubscription"
 --
 
-CREATE TABLE userbadge (
-    id integer NOT NULL,
-    username character varying(50) NOT NULL,
-    badgeid character varying(50) NOT NULL,
-    creationdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "SubverseSubscription" DISABLE KEYS */;
+/*!40000 ALTER TABLE "SubverseSubscription" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserBadge"
+--
+
+DROP TABLE IF EXISTS "UserBadge";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserBadge" (
+  "ID" int NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "BadgeID" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.userbadge OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: userblockedsubverse; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserBadge"
 --
 
-CREATE TABLE userblockedsubverse (
-    id integer NOT NULL,
-    subverse character varying(20) NOT NULL,
-    username character varying(50) NOT NULL,
-    creationdate timestamp without time zone DEFAULT now()
+
+/*!40000 ALTER TABLE "UserBadge" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserBadge" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserBlockedSubverse"
+--
+
+DROP TABLE IF EXISTS "UserBlockedSubverse";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserBlockedSubverse" (
+  "ID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.userblockedsubverse OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: userblockeduser; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserBlockedSubverse"
 --
 
-CREATE TABLE userblockeduser (
-    id integer NOT NULL,
-    blockuser character varying(50) NOT NULL,
-    username character varying(50) NOT NULL,
-    creationdate timestamp without time zone DEFAULT now()
+
+/*!40000 ALTER TABLE "UserBlockedSubverse" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserBlockedSubverse" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserBlockedUser"
+--
+
+DROP TABLE IF EXISTS "UserBlockedUser";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserBlockedUser" (
+  "ID" int NOT NULL,
+  "BlockUser" varchar(50) NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.userblockeduser OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: userpreference; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserBlockedUser"
 --
 
-CREATE TABLE userpreference (
-    username character varying(50) NOT NULL,
-    disablecss bit(1) NOT NULL,
-    nightmode bit(1) NOT NULL,
-    language character varying(50) NOT NULL,
-    openinnewwindow bit(1) NOT NULL,
-    enableadultcontent bit(1) NOT NULL,
-    displayvotes bit(1) NOT NULL,
-    displaysubscriptions bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    usesubscriptionsmenu bit(1) DEFAULT (1)::bit(1) NOT NULL,
-    bio character varying(100),
-    avatar character varying(50),
-    displayads bit(1) DEFAULT (0)::bit(1) NOT NULL,
-    displaycommentcount integer,
-    highlightminutes integer,
-    vanitytitle character varying(50),
-    collapsecommentlimit integer
+
+/*!40000 ALTER TABLE "UserBlockedUser" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserBlockedUser" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserPreference"
+--
+
+DROP TABLE IF EXISTS "UserPreference";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserPreference" (
+  "UserName" varchar(50) NOT NULL,
+  "DisableCSS" bit NOT NULL,
+  "NightMode" bit NOT NULL,
+  "Language" varchar(50) NOT NULL,
+  "OpenInNewWindow" bit NOT NULL,
+  "EnableAdultContent" bit NOT NULL,
+  "DisplayVotes" bit NOT NULL,
+  "DisplaySubscriptions" bit DEFAULT b'0',
+  "UseSubscriptionsMenu" bit DEFAULT b'1',
+  "Bio" varchar(100) DEFAULT NULL,
+  "Avatar" varchar(50) DEFAULT NULL,
+  "DisplayAds" bit DEFAULT b'0',
+  "DisplayCommentCount" int DEFAULT NULL,
+  "HighLightMinutes" int DEFAULT NULL,
+  "VanityTitle" varchar(50) DEFAULT NULL,
+  "CollapseCommentLimit" int DEFAULT NULL
 );
-
-
-ALTER TABLE public.userpreference OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: userset; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserPreference"
 --
 
-CREATE TABLE userset (
-    id integer NOT NULL,
-    name character varying(20) NOT NULL,
-    description character varying(200) NOT NULL,
-    createdby character varying(20) NOT NULL,
-    creationdate timestamp without time zone NOT NULL,
-    ispublic bit(1) DEFAULT (1)::bit(1) NOT NULL,
-    subscribercount integer DEFAULT 1 NOT NULL,
-    isdefault bit(1) DEFAULT (0)::bit(1) NOT NULL
+
+/*!40000 ALTER TABLE "UserPreference" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserPreference" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserSet"
+--
+
+DROP TABLE IF EXISTS "UserSet";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserSet" (
+  "ID" int NOT NULL,
+  "Name" varchar(20) NOT NULL,
+  "Description" varchar(200) NOT NULL,
+  "CreatedBy" varchar(20) NOT NULL,
+  "CreationDate" timestamp NOT NULL DEFAULT now(),
+  "IsPublic" bit DEFAULT b'1',
+  "SubscriberCount" int NOT NULL DEFAULT '1',
+  "IsDefault" bit DEFAULT b'0',
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.userset OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: usersetlist; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserSet"
 --
 
-CREATE TABLE usersetlist (
-    id integer NOT NULL,
-    usersetid integer NOT NULL,
-    subverse character varying(20) NOT NULL
+
+/*!40000 ALTER TABLE "UserSet" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserSet" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserSetList"
+--
+
+DROP TABLE IF EXISTS "UserSetList";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserSetList" (
+  "ID" int NOT NULL,
+  "UserSetID" int NOT NULL,
+  "Subverse" varchar(20) NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.usersetlist OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: usersetsubscription; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserSetList"
 --
 
-CREATE TABLE usersetsubscription (
-    id integer NOT NULL,
-    usersetid integer NOT NULL,
-    "Order" integer DEFAULT 0 NOT NULL,
-    username character varying(20) NOT NULL
+
+/*!40000 ALTER TABLE "UserSetList" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserSetList" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserSetSubscription"
+--
+
+DROP TABLE IF EXISTS "UserSetSubscription";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserSetSubscription" (
+  "ID" int NOT NULL,
+  "UserSetID" int NOT NULL,
+  "Order" int NOT NULL DEFAULT '0',
+  "UserName" varchar(20) NOT NULL,
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.usersetsubscription OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: uservisit; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserSetSubscription"
 --
 
-CREATE TABLE uservisit (
-    id integer NOT NULL,
-    submissionid integer NOT NULL,
-    username character varying(50) NOT NULL,
-    lastvisitdate timestamp without time zone NOT NULL
+
+/*!40000 ALTER TABLE "UserSetSubscription" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserSetSubscription" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "UserVisit"
+--
+
+DROP TABLE IF EXISTS "UserVisit";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "UserVisit" (
+  "ID" int NOT NULL,
+  "SubmissionID" int NOT NULL,
+  "UserName" varchar(50) NOT NULL,
+  "LastVisitDate" timestamp NOT NULL DEFAULT now(),
+  PRIMARY KEY ("ID")
 );
-
-
-ALTER TABLE public.uservisit OWNER TO voat;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Name: viewstatistic; Type: TABLE; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "UserVisit"
 --
 
-CREATE TABLE viewstatistic (
-    submissionid integer NOT NULL,
-    viewerid character varying(90) NOT NULL
+
+/*!40000 ALTER TABLE "UserVisit" DISABLE KEYS */;
+/*!40000 ALTER TABLE "UserVisit" ENABLE KEYS */;
+
+
+--
+-- Table structure for table "ViewStatistic"
+--
+
+DROP TABLE IF EXISTS "ViewStatistic";
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE "ViewStatistic" (
+  "SubmissionID" int NOT NULL,
+  "ViewerID" varchar(90) NOT NULL
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-
-ALTER TABLE public.viewstatistic OWNER TO voat;
-
---
--- Name: ad_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY ad
-    ADD CONSTRAINT ad_pkey PRIMARY KEY (id);
-
-
---
--- Name: apiclient_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY apiclient
-    ADD CONSTRAINT apiclient_pkey PRIMARY KEY (id);
-
-
---
--- Name: apicorspolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY apicorspolicy
-    ADD CONSTRAINT apicorspolicy_pkey PRIMARY KEY (id);
-
-
---
--- Name: apilog_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY apilog
-    ADD CONSTRAINT apilog_pkey PRIMARY KEY (id);
-
-
---
--- Name: apipermissionpolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY apipermissionpolicy
-    ADD CONSTRAINT apipermissionpolicy_pkey PRIMARY KEY (id);
-
-
---
--- Name: apithrottlepolicy_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY apithrottlepolicy
-    ADD CONSTRAINT apithrottlepolicy_pkey PRIMARY KEY (id);
-
-
---
--- Name: badge_id_pk; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY badge
-    ADD CONSTRAINT badge_id_pk PRIMARY KEY (id);
-
-
---
--- Name: banneddomain_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY banneddomain
-    ADD CONSTRAINT banneddomain_pkey PRIMARY KEY (id);
-
-
---
--- Name: banneduser_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY banneduser
-    ADD CONSTRAINT banneduser_pkey PRIMARY KEY (id);
-
-
---
--- Name: comment_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY comment
-    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
-
-
---
--- Name: commentsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY commentsavetracker
-    ADD CONSTRAINT commentsavetracker_pkey PRIMARY KEY (id);
-
-
---
--- Name: commentvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY commentvotetracker
-    ADD CONSTRAINT commentvotetracker_pkey PRIMARY KEY (id);
-
-
---
--- Name: eventlog_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY eventlog
-    ADD CONSTRAINT eventlog_pkey PRIMARY KEY (id);
-
-
---
--- Name: featuredsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY featuredsubverse
-    ADD CONSTRAINT featuredsubverse_pkey PRIMARY KEY (id);
-
-
---
--- Name: message_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY message
-    ADD CONSTRAINT message_pkey PRIMARY KEY (id);
-
-
---
--- Name: moderatorinvitation_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY moderatorinvitation
-    ADD CONSTRAINT moderatorinvitation_pkey PRIMARY KEY (id);
-
-
---
--- Name: submission_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY submission
-    ADD CONSTRAINT submission_pkey PRIMARY KEY (id);
-
-
---
--- Name: submissionsavetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY submissionsavetracker
-    ADD CONSTRAINT submissionsavetracker_pkey PRIMARY KEY (id);
-
-
---
--- Name: submissionvotetracker_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY submissionvotetracker
-    ADD CONSTRAINT submissionvotetracker_pkey PRIMARY KEY (id);
-
-
---
--- Name: subverse_name_pk; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY subverse
-    ADD CONSTRAINT subverse_name_pk PRIMARY KEY (name);
-
-
---
--- Name: subverseban_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY subverseban
-    ADD CONSTRAINT subverseban_pkey PRIMARY KEY (id);
-
-
---
--- Name: subverseflair_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY subverseflair
-    ADD CONSTRAINT subverseflair_pkey PRIMARY KEY (id);
-
-
---
--- Name: subversemoderator_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY subversemoderator
-    ADD CONSTRAINT subversemoderator_pkey PRIMARY KEY (id);
-
-
---
--- Name: subversesubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY subversesubscription
-    ADD CONSTRAINT subversesubscription_pkey PRIMARY KEY (id);
-
-
---
--- Name: userbadge_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY userbadge
-    ADD CONSTRAINT userbadge_pkey PRIMARY KEY (id);
-
-
---
--- Name: userblockedsubverse_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY userblockedsubverse
-    ADD CONSTRAINT userblockedsubverse_pkey PRIMARY KEY (id);
-
-
---
--- Name: userblockeduser_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY userblockeduser
-    ADD CONSTRAINT userblockeduser_pkey PRIMARY KEY (id);
-
-
 --
--- Name: userset_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
+-- Dumping data for table "ViewStatistic"
 --
 
-ALTER TABLE ONLY userset
-    ADD CONSTRAINT userset_pkey PRIMARY KEY (id);
 
+/*!40000 ALTER TABLE "ViewStatistic" DISABLE KEYS */;
+/*!40000 ALTER TABLE "ViewStatistic" ENABLE KEYS */;
 
---
--- Name: usersetlist_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY usersetlist
-    ADD CONSTRAINT usersetlist_pkey PRIMARY KEY (id);
-
-
---
--- Name: usersetsubscription_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY usersetsubscription
-    ADD CONSTRAINT usersetsubscription_pkey PRIMARY KEY (id);
-
-
---
--- Name: uservisit_pkey; Type: CONSTRAINT; Schema: public; Owner: voat; Tablespace: 
---
-
-ALTER TABLE ONLY uservisit
-    ADD CONSTRAINT uservisit_pkey PRIMARY KEY (id);
-
-
---
--- Name: apiclient_apipermissionpolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY apiclient
-    ADD CONSTRAINT apiclient_apipermissionpolicy_id_fk FOREIGN KEY (apipermissionpolicyid) REFERENCES apipermissionpolicy(id);
-
-
---
--- Name: apiclient_apithrottlepolicy_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY apiclient
-    ADD CONSTRAINT apiclient_apithrottlepolicy_id_fk FOREIGN KEY (apithrottlepolicyid) REFERENCES apithrottlepolicy(id);
-
-
---
--- Name: comment_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY comment
-    ADD CONSTRAINT comment_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: commentsavetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY commentsavetracker
-    ADD CONSTRAINT commentsavetracker_comment_id_fk FOREIGN KEY (commentid) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: commentvotetracker_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY commentvotetracker
-    ADD CONSTRAINT commentvotetracker_comment_id_fk FOREIGN KEY (commentid) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: contentremovallog_comment_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY contentremovallog
-    ADD CONSTRAINT contentremovallog_comment_id_fk FOREIGN KEY (commentid) REFERENCES comment(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: defaultsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY defaultsubverse
-    ADD CONSTRAINT defaultsubverse_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: featuredsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY featuredsubverse
-    ADD CONSTRAINT featuredsubverse_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name);
-
-
---
--- Name: stickiedsubmission_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY stickiedsubmission
-    ADD CONSTRAINT stickiedsubmission_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id);
-
-
---
--- Name: stickiedsubmission_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY stickiedsubmission
-    ADD CONSTRAINT stickiedsubmission_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: submissionremovallog_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY submissionremovallog
-    ADD CONSTRAINT submissionremovallog_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: submissionsavetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY submissionsavetracker
-    ADD CONSTRAINT submissionsavetracker_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: submissionvotetracker_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY submissionvotetracker
-    ADD CONSTRAINT submissionvotetracker_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id);
-
-
---
--- Name: subverseban_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY subverseban
-    ADD CONSTRAINT subverseban_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: subverseflair_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY subverseflair
-    ADD CONSTRAINT subverseflair_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: subversemoderator_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY subversemoderator
-    ADD CONSTRAINT subversemoderator_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: subversesubscription_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY subversesubscription
-    ADD CONSTRAINT subversesubscription_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: userbadge_badge_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY userbadge
-    ADD CONSTRAINT userbadge_badge_id_fk FOREIGN KEY (badgeid) REFERENCES badge(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: userblockedsubverse_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY userblockedsubverse
-    ADD CONSTRAINT userblockedsubverse_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: usersetlist_subverse_name_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY usersetlist
-    ADD CONSTRAINT usersetlist_subverse_name_fk FOREIGN KEY (subverse) REFERENCES subverse(name) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: usersetlist_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY usersetlist
-    ADD CONSTRAINT usersetlist_userset_id_fk FOREIGN KEY (usersetid) REFERENCES userset(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: usersetsubscription_userset_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY usersetsubscription
-    ADD CONSTRAINT usersetsubscription_userset_id_fk FOREIGN KEY (usersetid) REFERENCES userset(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: viewstatistic_submission_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: voat
---
-
-ALTER TABLE ONLY viewstatistic
-    ADD CONSTRAINT viewstatistic_submission_id_fk FOREIGN KEY (submissionid) REFERENCES submission(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: public; Type: ACL; Schema: -; Owner: postgres
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM postgres;
-GRANT ALL ON SCHEMA public TO postgres;
-GRANT ALL ON SCHEMA public TO PUBLIC;
-
-
---
--- PostgreSQL database dump complete
---
 
